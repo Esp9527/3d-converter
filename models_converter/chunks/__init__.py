@@ -480,18 +480,18 @@ class NODE(Chunk, Writer, Reader):
                             'w': self.readNShort()
                         }
 
-                    if settings[4] or frame == 0:  # Position X
+                    if settings[6] or frame == 0:  # Position X
                         pos_x = self.readFloat()
                     if settings[5] or frame == 0:  # Position Y
                         pos_y = self.readFloat()
-                    if settings[6] or frame == 0:  # Position Z
+                    if settings[4] or frame == 0:  # Position Z
                         pos_z = self.readFloat()
 
-                    if settings[1] or frame == 0:  # Scale X
+                    if settings[3] or frame == 0:  # Scale X
                         scale_x = self.readFloat()
                     if settings[2] or frame == 0:  # Scale Y
                         scale_y = self.readFloat()
-                    if settings[3] or frame == 0:  # Scale Z
+                    if settings[1] or frame == 0:  # Scale Z
                         scale_z = self.readFloat()
 
                     frame_data['rotation'] = rotation
@@ -547,18 +547,18 @@ class NODE(Chunk, Writer, Reader):
                     self.writeNShort(frame['rotation']['z'])
                     self.writeNShort(frame['rotation']['w'])
 
-                if frames_settings[4] or frames.index(frame) == 0:  # Position X
+                if frames_settings[6] or frames.index(frame) == 0:  # Position X
                     self.writeFloat(frame['position']['x'])
                 if frames_settings[5] or frames.index(frame) == 0:  # Position Y
                     self.writeFloat(frame['position']['y'])
-                if frames_settings[6] or frames.index(frame) == 0:  # Position Z
+                if frames_settings[4] or frames.index(frame) == 0:  # Position Z
                     self.writeFloat(frame['position']['z'])
 
-                if frames_settings[1] or frames.index(frame) == 0:  # Scale X
+                if frames_settings[3] or frames.index(frame) == 0:  # Scale X
                     self.writeFloat(frame['scale']['x'])
                 if frames_settings[2] or frames.index(frame) == 0:  # Scale Y
                     self.writeFloat(frame['scale']['y'])
-                if frames_settings[3] or frames.index(frame) == 0:  # Scale Z
+                if frames_settings[1] or frames.index(frame) == 0:  # Scale Z
                     self.writeFloat(frame['scale']['z'])
 
 
