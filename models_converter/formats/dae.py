@@ -317,9 +317,8 @@ class Writer:
                         SubElement(technique_common, 'instance_material',
                                    symbol=symbol,
                                    target=f'#{target}')
-            else:
-                if parent_name != '':
-                    node.attrib['type'] = 'JOINT'
+            if parent_name != '' and len(node_data['instances']) == 0:
+                node.attrib['type'] = 'JOINT'
 
             # <AnimationVariables>
             frame_rate = data['header']['frame_rate']
@@ -352,7 +351,7 @@ class Writer:
                     SubElement(node, 'matrix', sid='transform').text = ' '.join(matrix_values)
                 matrix_output.append(' '.join(matrix_values))
 
-            if len(frames) > 1:
+            if len(frames) > 1 or (len(frames) == 1 and frames[0]['frame_id'] != 0):
                 animation = SubElement(library_animations, 'animation', id=node_name)
 
                 dae.write_source(
